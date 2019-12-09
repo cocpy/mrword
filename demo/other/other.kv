@@ -1,0 +1,44 @@
+<OtherWidget>:
+
+    CheckBox:
+        id: demo_checkbox
+        pos: 100, 400
+        color: [1, 1, 1, 1]
+
+    Slider:
+        id: slider_move
+        orientation: 'vertical'
+        min: -100
+        max: 100
+        step: 10
+        value_track: True
+        value_track_color: [1, 0, 0, 1]
+        value: 25
+        pos: 200, 400
+        on_touch_move: print('move:', slider_move.value)
+
+    Slider:
+        id: slider_down
+        min: -100
+        max: 100
+        pos: 100, 300
+        on_touch_down: print('down:', slider_down.value)
+
+    ProgressBar:
+        max: 1000
+        value: 820
+        pos: 100, 200
+
+    ToggleButton:
+        text: 'Yes'
+        group: 'select'
+        state: 'down'
+        pos: 520, 400
+    ToggleButton:
+        text: 'No'
+        group: 'select'
+        pos: 660, 400
+
+    Switch:
+        id: demo_switch
+        pos: 600, 200

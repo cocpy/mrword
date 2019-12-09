@@ -1,0 +1,8 @@
+kivy==1.11.1
+pdfminer3k
+xlrd
+python_docx
+docx
+beautifulsoup4
+matplotlib==2.2.2
+numpy

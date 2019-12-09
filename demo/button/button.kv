@@ -1,0 +1,16 @@
+<MyButton@Button>:
+    text: 'Hello World'
+    font_size: 62
+    background_color: 0, 1, .93, 1
+    color: .8, .9, 0, 1
+    size: 100, 120
+
+
+<ButtonWidget>:
+    MyButton:
+        pos: 480, 380
+        on_press: self.font_size=self.font_size/2
+
+    MyButton:
+        pos: [100, 180]
+        on_press: self.font_size=self.font_size/2

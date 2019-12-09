@@ -1,0 +1,61 @@
+<UploadPage>:
+    on_left_to_right_line: root.upload_to_index()
+    # on_right_to_left_line: root.upload_to_addword()
+    BoxLayout:
+        id: upload_main_box
+        orientation:"vertical"
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'image/back.jpg'
+
+        Label:
+            id: upload_tip
+            text: "\u4e0a\u4f20\u5df2\u5c31\u7eea!"
+            color: 1,0,0,1
+            font_name: "site_packages/DroidSansFallback.ttf"
+
+        Label:
+            id: status
+            color: 0,0,0,1
+
+        Label:
+            id: upload_info
+            color: 0,0,0,1
+
+        Button:
+            text:"\u4e0a\u4f20\u6587\u4ef6"
+            size_hint: .2,.15
+            pos_hint: {'center_x':0.5,'y':0.1}
+            background_normal: ''
+            background_color: 1, 0.305, 0, 1
+            font_name: "site_packages/DroidSansFallback.ttf"
+            on_release: root.show_save()
+
+<SaveDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            # path: '/storage/emulated/0'
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+
+        TextInput:
+            id: text_input
+            size_hint_y: .1
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: .1
+            Button:
+                text: "\u53d6\u6d88"
+                on_release: root.cancel()
+                font_name: "site_packages/DroidSansFallback.ttf"
+
+            Button:
+                text: "\u4e0a\u4f20"
+                on_release: root.save(filechooser.path, text_input.text)
+                font_name: "site_packages/DroidSansFallback.ttf"

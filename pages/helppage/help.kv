@@ -1,0 +1,20 @@
+<HelpPage>:
+    on_left_to_right_line: root.help_to_info()
+
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'image/help_bag.png'
+        id: content_id
+
+        Label:
+            id: help_box_label_note
+            font_name: 'site_packages/DroidSansFallback.ttf'
+            color: (0,0,0,1)
+            text: ''
+            padding: (0, 10)

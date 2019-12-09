@@ -1,0 +1,209 @@
+<MePage>
+    on_left_to_right_line: root.return_info_button()
+    BoxLayout:
+        orientation:"vertical"
+        id: me_main_box
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'image/back.jpg'
+
+        BoxLayout:
+            AnchorLayout:
+                anchor_x: "left"
+                anchor_y: "top"
+                Button:
+                    text:"\u53d6\u6d88"
+                    size_hint: .32,.4
+                    color: (0.4,0.4,0.4,1)
+                    font_name: "site_packages/DroidSansFallback.ttf"
+                    background_normal: ''
+                    background_color: (0.4,0.4,0.4,0)
+                    on_press: root.return_info_button()
+            AnchorLayout:
+                anchor_x: "right"
+                anchor_y: "top"
+                Button:
+                    text:"\u4fdd\u5b58"
+                    size_hint: .26,.43
+                    color: 1,0.23,0.23,1
+                    font_name: "site_packages/DroidSansFallback.ttf"
+                    background_normal: ''
+                    background_color: 1,0.23,0.23,0
+                    on_press: root.save_all_changes()
+
+        Button:
+            id: test_image_box
+            size_hint: (.2,.5)
+            pos_hint: {'center_x':.5,'center_y':.5}
+            on_release: root.show_head_image()
+            background_color: (0,0,0,0)
+            canvas.after:
+                Color:
+                    rgba: (1,1,1,1)
+                Ellipse:
+                    size: me_main_box.size[1]/4,me_main_box.size[1]/4
+                    pos: [self.center_x - me_main_box.size[1]/8, self.center_y - me_main_box.size[1]/14]
+                    source: 'image/c0c.jpg'
+
+
+        BoxLayout:
+            orientation:"vertical"
+
+            BoxLayout:
+                id: me_rename_box
+
+                Label:
+                    text: '\u540d\u79f0:'
+                    color: (0.24, 0.678, 0.95, 1)
+                    font_name: "site_packages/DroidSansFallback.ttf"
+
+                AnchorLayout:
+                    anchor_x: "center"
+                    anchor_y: "center"
+                    TextInput:
+                        id: name_input
+                        text: 'C0C'
+                        size_hint_x: .5
+                        size_hint_y: None
+                        height: '32dp'
+                        padding_x: [self.center[0]/6.0 - self._get_text_width(max(self._lines, key=len), self.tab_width, self._label_cached)/6.0, 0]
+                        padding_y: [self.height/2.0 - (self.line_height/2.0) * len(self._lines), 0]
+
+            BoxLayout:
+                id: me_word_num_box
+
+                Label:
+                    text: '\u6bcf\u65e5\u5b66\u4e60\u5355\u8bcd\u91cf:'
+                    color: (0.24, 0.678, 0.95, 1)
+                    font_name: "site_packages/DroidSansFallback.ttf"
+
+                AnchorLayout:
+                    id: me_word_box_anchor
+                    anchor_x: "center"
+                    anchor_y: "center"
+                    TextInput:
+                        text: '50'
+                        id: me_word_num_box_input
+                        size_hint_x: .5
+                        size_hint_y: None
+                        height: '32dp'
+                        padding_x: [self.center[0]/6.0 - self._get_text_width(max(self._lines, key=len), self.tab_width, self._label_cached)/6.0, 0]
+                        padding_y: [self.height/2.0 - (self.line_height/2.0) * len(self._lines), 0]
+
+
+        BoxLayout:
+            orientation:"vertical"
+
+            BoxLayout:
+                id: me_change_button_box
+                AnchorLayout:
+                    anchor_x: "center"
+                    anchor_y: "center"
+                    Button:
+                        text: '\u66f4\u6539\u80cc\u666f'
+                        size_hint_x: None
+                        width: me_word_num_box_input.size[0]
+                        size_hint_y: None
+                        height: '32dp'
+                        background_normal: ''
+                        background_color: (0.24, 0.678, 0.95, 1)
+                        font_name: "site_packages/DroidSansFallback.ttf"
+                        on_press: root.change_background_button()
+
+                AnchorLayout:
+                    anchor_x: "center"
+                    anchor_y: "center"
+                    Button:
+                        text: '\u4e0a\u4f20\u6587\u4ef6'
+                        size_hint_x: None
+                        size_hint_y: None
+                        width: me_word_num_box_input.size[0]
+                        height: '32dp'
+                        background_normal: ''
+                        background_color: (0.24, 0.678, 0.95, 1)
+                        font_name: "site_packages/DroidSansFallback.ttf"
+                        on_press: root.return_upload_button()
+
+            BoxLayout:
+                id: me_change_button_box
+                AnchorLayout:
+                    anchor_x: "center"
+                    anchor_y: "center"
+                    Button:
+                        text: 'Month'
+                        id: month_or_week
+                        size_hint_x: None
+                        width: me_word_num_box_input.size[0]
+                        size_hint_y: None
+                        height: '32dp'
+                        background_normal: ''
+                        background_color: (0.24, 0.678, 0.95, 1)
+                        font_name: "site_packages/DroidSansFallback.ttf"
+                        on_press: root.month_or_week()
+
+                AnchorLayout:
+                    anchor_x: "center"
+                    anchor_y: "center"
+                    Button:
+                        text: '\u91cd\u7f6e'
+                        size_hint_x: None
+                        size_hint_y: None
+                        width: me_word_num_box_input.size[0]
+                        height: '32dp'
+                        background_normal: ''
+                        background_color: (0.24, 0.678, 0.95, 1)
+                        font_name: "site_packages/DroidSansFallback.ttf"
+                        on_press: root.reset_all_tip()
+
+
+<SaveImageDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: file_chooser
+            # path: '/storage/emulated/0'
+            on_selection: image_text_input.text = self.selection and self.selection[0] or ''
+
+        TextInput:
+            id: image_text_input
+            size_hint_y: .1
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: .1
+            Button:
+                text: "\u53d6\u6d88"
+                font_name: "site_packages/DroidSansFallback.ttf"
+                on_release: root.cancel()
+
+            Button:
+                text: "\u4e0a\u4f20"
+                font_name: "site_packages/DroidSansFallback.ttf"
+                on_release: root.save(file_chooser.path, image_text_input.text)
+
+
+
+<ResetDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        Label:
+            text: ' \u4f60\u6b63\u5728\u91cd\u7f6e\u6240\u6709\u8bbe\u7f6e,\n \u8fd9\u5c06\u4f1a\u6e05\u9664\u8f6f\u4ef6\u6240\u6709\u6570\u636e,\n \u8bf7\u95ee\u662f\u5426\u7ee7\u7eed?'
+            font_name: "site_packages/DroidSansFallback.ttf"
+
+        BoxLayout:
+            size_hint_y: .15
+            Button:
+                text: "\u5426"
+                font_name: "site_packages/DroidSansFallback.ttf"
+                on_release: root.cancel()
+
+            Button:
+                text: "\u662f"
+                font_name: "site_packages/DroidSansFallback.ttf"
+                on_release: root.save()

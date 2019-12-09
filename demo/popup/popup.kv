@@ -1,0 +1,22 @@
+#: import Factory kivy.factory.Factory
+<MyPopup@Popup>:
+    auto_dismiss: False
+    title: 'Hello Popup'
+    on_dismiss: print('on_dismiss is running')
+    on_open: print('on_open is running')
+    size_hint: .8, .8
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        Button:
+            text: 'Close Popup!'
+            size_hint: None, None
+            size: 100, 60
+            on_release: root.dismiss()
+
+<PopupBox>:
+    Button:
+        text: 'Open popup'
+        size: 100, 120
+        on_release: Factory.MyPopup().open()

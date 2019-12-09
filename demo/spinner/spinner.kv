@@ -1,0 +1,8 @@
+<SpinnerBox>:
+    Spinner:
+        size_hint: None, None
+        size: 100, 44
+        pos_hint: {'center': (.5, .5)}
+        text: 'Home'
+        values: 'Home', 'Work', 'Other', 'Custom'
+        on_text: print("The spinner's text is: ", self.text)

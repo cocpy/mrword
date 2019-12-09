@@ -1,0 +1,21 @@
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Screen 1'
+        Button:
+            text: 'Goto settings'
+            size_hint: .2, .1
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'settings'
+
+<SettingsScreen>:
+    BoxLayout:
+        Button:
+            text: 'Back to menu'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
+        Label:
+            text: 'Screen 2'

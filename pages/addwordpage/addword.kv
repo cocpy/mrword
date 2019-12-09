@@ -1,0 +1,83 @@
+<SelectableButton>:
+    canvas.before:
+        Color:
+            rgba: (.0, 0.9, .1, .3) if self.selected else (1, 1, 1, 0.1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    background_color: (1, 1, 1, 0.1) if self.selected else (255, 255, 255, 1)
+    color: (102,102,102,1)
+
+<AddWordPage>:
+    on_left_to_right_line: root.add_word_to_review()
+    on_right_to_left_line: root.add_word_to_info()
+    # on_top_to_bottom_line: root.add_word_refresh()
+    add_word_page: add_word_page.__self__
+    BoxLayout:
+        id: add_word_page
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'image/back.jpg'
+
+        GridLayout:
+            size_hint: 1, None
+            height: 65
+            cols: 2
+
+            Label:
+                id: rv_add_word
+                text: "\u63d0\u793a\uff1a\u70b9\u51fb\u5355\u8bcd\uff08\u6216\u5bf9\u5e94\u7f16\u53f7\uff09\u5b8c\u6210\u6dfb\u52a0\uff01"
+                color: (0.24, 0.678, 0.95, 1)
+                font_name: "site_packages/DroidSansFallback.ttf"
+
+        BoxLayout:
+            RecycleView:
+                viewclass: 'SelectableButton'
+                data: [{'text': str(x)} for x in root.data_items]
+                SelectableRecycleGridLayout:
+                    cols: 2
+                    default_size: None, dp(40)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    multiselect: True
+                    touch_multiselect: True
+
+        GridLayout:
+            size_hint_y: .1
+            cols: 2
+
+            Button:
+                id: rv_random_button
+                text: "\u968f\u673a\u6dfb\u52a0"
+                font_size: '20sp'
+                color: (120,120,120,1)
+                background_color: 255, 255, 255, 1
+                on_press: root.add_random_words()
+                font_name: "site_packages/DroidSansFallback.ttf"
+
+            Button:
+                id: return_info_button
+                text: "\u5237\u65b0"
+                font_size: 20
+                color: (120,120,120,1)
+                background_color: 255, 255, 255, 1
+                on_press: root.add_word_refresh()
+                font_name: "site_packages/DroidSansFallback.ttf"
+
+<TextInputPopup>:
+    size_hint: None, None
+    size: 400, 400
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: "vertical"
+        TextInput:
+            id: txtinput
+            text: root.obj_text
